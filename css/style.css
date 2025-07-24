@@ -484,3 +484,14 @@
 .footer .copyright a:hover {
     color: #FFFFFF;
 }
+.form-floating > .form-control::placeholder {
+  opacity: 0.3 !important;
+  color: #828384 !important;
+}
+.form-floating > label {
+    color: #6c757d; /* or #212529 for dark text */
+}
+.custom-floating > .form-select ~ label {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) translateX(0) !important;
+}
