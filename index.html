@@ -745,9 +745,10 @@
   <!-- Footer End -->
   <!-- Popup Modal Start -->
   <!-- Popup Modal Start -->
+   
   <div class="modal fade" id="popupServiceModal" tabindex="-1" aria-labelledby="popupServiceModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="popupServiceModalLabel">Need Emergency Repair Service?</h5>
@@ -825,11 +826,31 @@
   <script src="js/main.js"></script>
   <!-- JavaScript to trigger popup after 1 minute -->
   <script>
-    setTimeout(function () {
-      var popupModal = new bootstrap.Modal(document.getElementById('popupServiceModal'));
+  let modalEl = document.getElementById('popupServiceModal');
+  let popupModal = new bootstrap.Modal(modalEl);
+
+  let isModalVisible = false;
+
+  // Show for the first time after 4 seconds
+  setTimeout(() => {
+    popupModal.show();
+    isModalVisible = true;
+  }, 4000);
+
+  // Track when modal is hidden
+  modalEl.addEventListener('hidden.bs.modal', function () {
+    isModalVisible = false;
+  });
+
+  // Show again every 10 seconds if not already visible
+  setInterval(() => {
+    if (!isModalVisible) {
       popupModal.show();
-    }, 4000); // 1 minute
-  </script>
+      isModalVisible = true;
+    }
+  }, 10000); // every 10 seconds
+</script>
+
 
   <!-- In <head> -->
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -909,7 +930,7 @@
 </body>
 
 <!--Start of Tawk.to Script-->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
   (function () {
     var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
@@ -919,6 +940,6 @@
     s1.setAttribute('crossorigin', '*');
     s0.parentNode.insertBefore(s1, s0);
   })();
-</script>
+</script> -->
 
 </html>
